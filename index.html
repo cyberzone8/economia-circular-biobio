@@ -65,6 +65,16 @@ footer{padding:1.5rem 0;font-size:.88rem;color:var(--muted)}
 .res.ok{display:block;background:var(--kelp-soft);border-left:5px solid var(--kelp)}
 .res.bad{display:block;background:#f6dcdc;color:#4a1010;border-left:5px solid #b3261e}
 @media (prefers-color-scheme:dark){.res.bad{background:#3a1717;color:#f3d0d0}}
+.lock{background:var(--surface)}
+.lock form{display:flex;flex-wrap:wrap;gap:.6rem;max-width:480px}
+.lock input{flex:1;min-width:200px;padding:.65rem;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);font:inherit}
+.lock button{background:var(--sea);color:var(--on-sea);border:0;border-radius:6px;padding:.65rem 1.1rem;font:inherit;font-weight:700;cursor:pointer}
+.tw{overflow-x:auto;margin-bottom:1.5rem}
+.tbl{border-collapse:collapse;width:100%;font-size:.95rem}
+.tbl th,.tbl td{padding:.55rem .7rem;border-bottom:1px solid var(--line);text-align:left}
+.tbl td:last-child,.tbl th:last-child{text-align:right;white-space:nowrap}
+.tbl thead th{background:var(--kelp-soft)}
+.tbl tfoot th{background:var(--kelp-soft)}
 </style>
 </head>
 <body>
@@ -157,6 +167,18 @@ footer{padding:1.5rem 0;font-size:.88rem;color:var(--muted)}
   </div>
 </section>
 
+<section id="presupuesto" class="lock">
+  <div class="wrap">
+    <h2>Presupuesto (acceso restringido)</h2>
+    <div id="pcandado">
+      <p>Este contenido es solo para socios e interesados. Ingresa la clave que te entregamos.</p>
+      <form id="pform"><input type="password" id="pclave" placeholder="Clave de acceso" autocomplete="off" aria-label="Clave de acceso"><button type="submit">Ver presupuesto</button></form>
+      <div class="res" id="perr" role="status"></div>
+    </div>
+    <div id="pcontenido" hidden></div>
+  </div>
+</section>
+
 <section id="verificar" class="verify">
   <div class="wrap">
     <h2>Verificar documento</h2>
@@ -213,6 +235,29 @@ footer{padding:1.5rem 0;font-size:.88rem;color:var(--muted)}
       if(d) show(el,true,'El archivo coincide con el documento '+d.codigo+', emitido el '+d.fecha+'.');
       else show(el,false,'La huella de este archivo no está en el registro. Puede haber sido modificado o no ser oficial.');
     }).catch(function(){show(el,false,'No se pudo comprobar el archivo.');});
+  });
+})();
+
+(function(){
+  var f=document.getElementById('pform'),err=document.getElementById('perr');
+  function b(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0);});}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var pass=document.getElementById('pclave').value;
+    if(!pass){err.className='res bad';err.textContent='Escribe la clave.';return;}
+    err.className='res ok';err.textContent='Verificando…';
+    fetch('presupuesto.enc.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 1;return r.json();})
+    .then(function(o){
+      return crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey'])
+      .then(function(k0){return crypto.subtle.deriveKey({name:'PBKDF2',salt:b(o.salt),iterations:o.iter,hash:'SHA-256'},k0,{name:'AES-GCM',length:256},false,['decrypt']);})
+      .then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:b(o.iv)},k,b(o.data));});
+    })
+    .then(function(p){
+      var c=document.getElementById('pcontenido');
+      c.innerHTML=new TextDecoder().decode(p);c.hidden=false;
+      document.getElementById('pcandado').hidden=true;
+    })
+    .catch(function(){err.className='res bad';err.textContent='Clave incorrecta, o el presupuesto aún no está publicado.';});
   });
 })();
 </script>
