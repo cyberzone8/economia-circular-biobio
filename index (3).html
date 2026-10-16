@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De la jibia al suelo: biotecnología para residuos pesqueros en el Biobío</title>
+<meta name="description" content="Proyecto de economía circular para valorizar el descarte de jibia con biotecnología y generar desarrollo regional en el Biobío. Buscamos terreno, socios y financiamiento.">
+<style>
+:root{--bg:#f3f7f5;--surface:#fff;--ink:#12262b;--muted:#4a6168;--sea:#0d3b4a;--kelp:#2f7d52;--kelp-soft:#dcebe2;--accent:#5a3d7a;--line:#cfdcd7;--on-sea:#eaf4f1;
+--serif:"Iowan Old Style","Palatino Linotype",Georgia,serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0c1a1e;--surface:#13262b;--ink:#e6f0ee;--muted:#9bb2ad;--sea:#071f27;--kelp:#6fc28f;--kelp-soft:#173a2b;--accent:#b79adb;--line:#26413f;--on-sea:#eaf4f1}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.05rem/1.65 var(--sans)}
+a{color:var(--kelp)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0 0 .6em}
+h2{font-size:clamp(1.6rem,3.5vw,2.2rem)}
+h3{font-size:1.2rem}
+p{margin:0 0 1em;max-width:68ch}
+section{padding:3.5rem 0}
+header.hero{background:var(--sea);color:var(--on-sea);padding:4.5rem 0 4rem}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);max-width:16ch;margin-bottom:.4em}
+.hero p{font-size:1.2rem;color:#c9dfd9}
+.hero .stats{display:flex;flex-wrap:wrap;gap:2rem;margin:2rem 0 2.2rem;padding:0;list-style:none}
+.hero .stats strong{display:block;font:700 2.1rem/1 var(--serif);color:#9be0b4}
+.hero .stats span{font-size:.9rem;color:#c9dfd9}
+.btn{display:inline-block;background:#9be0b4;color:#072a1a;font-weight:700;padding:.85rem 1.4rem;border-radius:6px;text-decoration:none}
+.btn:hover{background:#b6edc8}
+.btn.alt{background:transparent;color:var(--on-sea);border:2px solid #7fb9aa;margin-left:.6rem}
+.grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.tile{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--kelp);padding:1.2rem 1.3rem;border-radius:4px}
+.tile p{margin:0;font-size:.97rem;color:var(--muted)}
+.tile h3{margin-bottom:.4em}
+.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:1rem}
+.steps li{counter-increment:s;display:grid;grid-template-columns:3rem 1fr;gap:1rem;background:var(--surface);border:1px solid var(--line);padding:1.1rem 1.3rem;border-radius:4px}
+.steps li::before{content:counter(s);font:700 1.9rem/1 var(--serif);color:var(--accent)}
+.steps h3{margin-bottom:.2em}.steps p{margin:0;color:var(--muted);font-size:.97rem}
+.band{background:var(--kelp-soft)}
+.two{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:start}
+.prov{display:grid;gap:1rem}
+.prov div{background:var(--surface);border:1px solid var(--line);padding:1rem 1.2rem;border-radius:4px}
+.prov h3{margin-bottom:.25em}.prov p{margin:0;font-size:.97rem;color:var(--muted)}
+figure{margin:0}
+figure img{width:100%;height:auto;border-radius:6px;border:1px solid var(--line)}
+figcaption{font-size:.88rem;color:var(--muted);margin-top:.5rem}
+.ask li{margin-bottom:.5rem}
+.note{font-size:.92rem;color:var(--muted);border-top:1px solid var(--line);padding-top:1rem;margin-top:2rem}
+.cta{background:var(--sea);color:var(--on-sea)}
+.cta a:not(.btn){color:#9be0b4}
+footer{padding:1.5rem 0;font-size:.88rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:560px){.btn.alt{margin:.7rem 0 0}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>De la jibia al suelo: valor para el Biobío</h1>
+    <p>Diseñamos una planta que convierte el descarte de jibia en compost y fertilizantes orgánicos usando biotecnología, y que deja empleo y capacidades en la región.</p>
+    <ul class="stats">
+      <li><strong>25 t</strong><span>de descarte por día, para partir</span></li>
+      <li><strong>8+</strong><span>entregas al mes</span></li>
+      <li><strong>3 a 5 ha</strong><span>de terreno buscado</span></li>
+      <li><strong>20 a 30</strong><span>empleos locales estimados</span></li>
+    </ul>
+    <a class="btn" href="#sumate">Quiero participar</a>
+    <a class="btn alt" href="#biotecnologia">Cómo funciona</a>
+  </div>
+</header>
+
+<section id="problema">
+  <div class="wrap two">
+    <div>
+      <h2>Un residuo con mucho nitrógeno que hoy se desaprovecha</h2>
+      <p>La jibia deja descartes ricos en proteína y nitrógeno, justo lo que necesitan los suelos agrícolas. Sin tratamiento, ese mismo material genera olores, líquidos contaminantes y riesgo sanitario.</p>
+      <p>La economía circular propone cambiar la pregunta: en vez de dónde botarlo, qué producto útil podemos hacer con él, y cerca de dónde se necesita.</p>
+    </div>
+    <figure>
+      <img src="infografia-economia-circular.png" alt="Infografía del proyecto de economía circular: busca sitio de 3 a 5 hectáreas en el Biobío para una planta de valorización de residuos pesqueros" loading="lazy">
+      <figcaption>Requisitos del sitio: uso de suelo industrial, terreno plano, más de 300 m de viviendas, acceso de camiones, agua y electricidad trifásica.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="biotecnologia" class="band">
+  <div class="wrap">
+    <h2>Qué puede hacer la biotecnología con un residuo pesquero</h2>
+    <p>Son microorganismos y enzimas que hacen el trabajo de descomponer y transformar. Estas son las rutas que evaluamos; la planta puede combinar varias.</p>
+    <div class="grid">
+      <div class="tile"><h3>Compostaje controlado</h3><p>Microorganismos aeróbicos degradan el residuo mezclado con material vegetal. Resulta un abono estable, sin olor fuerte ni patógenos si se maneja bien la temperatura.</p></div>
+      <div class="tile"><h3>Hidrolizados proteicos</h3><p>Enzimas rompen las proteínas en fragmentos pequeños. Sirven como fertilizante líquido y bioestimulante para cultivos.</p></div>
+      <div class="tile"><h3>Ensilaje y fermentación</h3><p>Bacterias o ácidos estabilizan el residuo fresco y permiten almacenarlo antes de procesarlo, útil cuando las entregas llegan en bloques.</p></div>
+      <div class="tile"><h3>Biogás</h3><p>La digestión anaerobia produce gas que puede alimentar la propia planta y deja un lodo aprovechable como abono.</p></div>
+      <div class="tile"><h3>Quitina y derivados</h3><p>Las partes duras de los cefalópodos contienen quitina, base de materiales con usos agrícolas e industriales. Está por evaluar en una etapa posterior.</p></div>
+      <div class="tile"><h3>Vermicompostaje</h3><p>Lombrices terminan el proceso y mejoran la calidad del producto final. Es una opción de bajo costo para escalas pequeñas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="wrap">
+    <h2>El camino que seguimos</h2>
+    <ol class="steps">
+      <li><div><h3>Recepción y estabilización</h3><p>El descarte llega en bateas tipo tolva y se estabiliza para controlar olores y patógenos desde el primer momento. Evaluamos el uso de cal viva y su costo por tonelada.</p></div></li>
+      <li><div><h3>Transformación biotecnológica</h3><p>Según el estado del residuo, se elige compostaje, hidrólisis u otra ruta. Se mide temperatura, humedad y nitrógeno en cada lote.</p></div></li>
+      <li><div><h3>Control de calidad y producto</h3><p>Se analiza el material final y se formula el compost o fertilizante para el cultivo que lo va a usar.</p></div></li>
+      <li><div><h3>Plan piloto y escalamiento</h3><p>Si aún no hay autorización para la escala completa, se parte con un piloto acotado y se amplía a medida que se obtienen los permisos ambientales y sanitarios.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="territorio" class="band">
+  <div class="wrap two">
+    <div>
+      <h2>Por qué esto es desarrollo regional</h2>
+      <p>El valor del proyecto queda en el territorio. Los residuos se transforman cerca de donde se generan, el producto vuelve a los suelos de la región y los puestos de trabajo son locales.</p>
+      <p>Además, la planta es un caso de estudio real para la formación técnica y profesional: estudiantes de INACAP sede Los Ángeles trabajan el diseño como desafío académico.</p>
+      <p>El modelo está pensado para replicarse. Cada provincia tiene una producción agrícola distinta, así que el mismo residuo puede convertirse en productos distintos según la demanda local.</p>
+    </div>
+    <div class="prov">
+      <div><h3>Provincia de Biobío</h3><p>Zona agrícola y forestal, con demanda de abonos para cultivos y recuperación de suelos. Primer foco por la presencia de la sede Los Ángeles.</p></div>
+      <div><h3>Provincia de Concepción</h3><p>Más cercana a los puertos y caletas, con salida logística hacia el resto del país.</p></div>
+      <div><h3>Provincia de Arauco</h3><p>Territorio costero con actividad pesquera y oportunidades de abastecer a su agricultura y silvicultura.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sumate" class="cta">
+  <div class="wrap">
+    <h2>Buscamos socios, terreno y recursos</h2>
+    <p>Si tu empresa, organización o tú pueden aportar con alguno de estos recursos, conversemos.</p>
+    <ul class="ask">
+      <li><strong>Terreno</strong> de 3 a 5 ha en cualquier comuna del Biobío, con uso de suelo que permita industria molesta o insalubre.</li>
+      <li><strong>Financiamiento o inversión</strong> para el piloto y la planta.</li>
+      <li><strong>Maquinaria y transporte</strong> para mover y procesar 25 toneladas diarias.</li>
+      <li><strong>Compradores del producto</strong>: agricultores, viveros y empresas que usen compost o fertilizantes orgánicos.</li>
+      <li><strong>Apoyo técnico</strong>: laboratorios, universidades y especialistas en compostaje, biotecnología y permisos ambientales.</li>
+    </ul>
+    <p><a class="btn" href="mailto:TU-CORREO@dominio.cl?subject=Proyecto%20econom%C3%ADa%20circular%20jibia%20Biob%C3%ADo">Escríbenos</a></p>
+    <p class="note">Ubicación, superficie, uso de suelo y valor son los datos que necesitamos para evaluar un terreno. El contrato queda sujeto a la obtención de los permisos ambientales y sanitarios.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Proyecto en etapa de diseño. Las cifras corresponden a la información inicial entregada por la empresa generadora del descarte y pueden cambiar. Contacto: TU NOMBRE · TU-CORREO@dominio.cl</div>
+</footer>
+
+</body>
+</html>
