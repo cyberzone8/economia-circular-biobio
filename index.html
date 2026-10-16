@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>De la jibia al suelo: biotecnología para residuos pesqueros en el Biobío</title>
 <meta name="description" content="Proyecto de economía circular para valorizar el descarte de jibia con biotecnología y generar desarrollo regional en el Biobío. Buscamos terreno, socios y financiamiento.">
@@ -52,6 +54,17 @@ figcaption{font-size:.88rem;color:var(--muted);margin-top:.5rem}
 footer{padding:1.5rem 0;font-size:.88rem;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:560px){.btn.alt{margin:.7rem 0 0}}
+.verify{background:var(--surface)}
+.vbox{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.vbox div{border:1px solid var(--line);border-radius:4px;padding:1.1rem 1.2rem}
+.vbox h3{margin-bottom:.4em}
+.vbox label{display:block;font-size:.9rem;color:var(--muted);margin-bottom:.4rem}
+.vbox input[type=text],.vbox input[type=file]{width:100%;padding:.6rem;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);font:inherit}
+.vbox button{margin-top:.7rem;background:var(--sea);color:var(--on-sea);border:0;border-radius:6px;padding:.65rem 1.1rem;font:inherit;font-weight:700;cursor:pointer}
+.res{margin-top:.8rem;padding:.7rem .9rem;border-radius:4px;font-size:.95rem;display:none}
+.res.ok{display:block;background:var(--kelp-soft);border-left:5px solid var(--kelp)}
+.res.bad{display:block;background:#f6dcdc;color:#4a1010;border-left:5px solid #b3261e}
+@media (prefers-color-scheme:dark){.res.bad{background:#3a1717;color:#f3d0d0}}
 </style>
 </head>
 <body>
@@ -139,14 +152,69 @@ footer{padding:1.5rem 0;font-size:.88rem;color:var(--muted)}
       <li><strong>Compradores del producto</strong>: agricultores, viveros y empresas que usen compost o fertilizantes orgánicos.</li>
       <li><strong>Apoyo técnico</strong>: laboratorios, universidades y especialistas en compostaje, biotecnología y permisos ambientales.</li>
     </ul>
-    <p><a class="btn" href="mailto:gustavogodoy.phd@gmail.com?subject=Proyecto%20econom%C3%ADa%20circular%20jibia%20Biob%C3%ADo">Escríbenos</a></p>
+    <p><a class="btn" href="mailto:TU-CORREO@dominio.cl?subject=Proyecto%20econom%C3%ADa%20circular%20jibia%20Biob%C3%ADo">Escríbenos</a></p>
     <p class="note">Ubicación, superficie, uso de suelo y valor son los datos que necesitamos para evaluar un terreno. El contrato queda sujeto a la obtención de los permisos ambientales y sanitarios.</p>
   </div>
 </section>
 
+<section id="verificar" class="verify">
+  <div class="wrap">
+    <h2>Verificar documento</h2>
+    <p>Todo documento oficial de este proyecto lleva un código y está registrado aquí con su fecha de emisión. Si el código no aparece o el archivo no coincide, el documento no es oficial.</p>
+    <div class="vbox">
+      <div>
+        <h3>Por código</h3>
+        <label for="cod">Código del documento</label>
+        <input type="text" id="cod" placeholder="EC-JIB-20261016-01" autocomplete="off">
+        <button type="button" id="bcod">Verificar código</button>
+        <div class="res" id="rcod" role="status"></div>
+      </div>
+      <div>
+        <h3>Por archivo</h3>
+        <label for="arch">Archivo PDF o Word recibido</label>
+        <input type="file" id="arch">
+        <button type="button" id="barch">Comprobar archivo</button>
+        <div class="res" id="rarch" role="status"></div>
+      </div>
+    </div>
+    <p class="note">El archivo no se sube a ningún servidor: la huella (SHA-256) se calcula en tu navegador y se compara con el <a href="registro.json">registro público</a>. Cualquier cambio en el documento, por mínimo que sea, cambia la huella.</p>
+  </div>
+</section>
+
 <footer>
-  <div class="wrap">Proyecto en etapa de diseño. Las cifras corresponden a la información inicial entregada por la empresa generadora del descarte y pueden cambiar. Contacto: Gustavo Godoy · gustavogodoy.phd@gmail.com</div>
+  <div class="wrap">Proyecto en etapa de diseño. Las cifras corresponden a la información inicial entregada por la empresa generadora del descarte y pueden cambiar. Contacto: Gustavo Godoy, Gerente, Expertos Chile SpA · TU-CORREO@dominio.cl</div>
 </footer>
 
+<script>
+(function(){
+  var reg=null;
+  function load(){
+    if(reg) return Promise.resolve(reg);
+    return fetch('registro.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){reg=j.documentos||[];return reg;});
+  }
+  function show(el,ok,msg){el.className='res '+(ok?'ok':'bad');el.textContent=msg;}
+  function find(c){c=c.trim().toUpperCase();return reg.filter(function(d){return d.codigo.toUpperCase()===c;})[0];}
+  document.getElementById('bcod').addEventListener('click',function(){
+    var el=document.getElementById('rcod'),c=document.getElementById('cod').value;
+    if(!c.trim()){show(el,false,'Escribe el código que aparece en el documento.');return;}
+    load().then(function(){
+      var d=find(c);
+      if(d) show(el,true,'Registrado: '+d.titulo+'. Emitido el '+d.fecha+' (versión '+d.version+') por '+d.emisor+'.');
+      else show(el,false,'Este código no está en el registro. No lo consideres un documento oficial.');
+    }).catch(function(){show(el,false,'No se pudo leer el registro. Intenta de nuevo más tarde.');});
+  });
+  document.getElementById('barch').addEventListener('click',function(){
+    var el=document.getElementById('rarch'),f=document.getElementById('arch').files[0];
+    if(!f){show(el,false,'Elige primero el archivo.');return;}
+    if(!window.crypto||!crypto.subtle){show(el,false,'Tu navegador no permite calcular la huella.');return;}
+    Promise.all([f.arrayBuffer().then(function(b){return crypto.subtle.digest('SHA-256',b);}),load()]).then(function(r){
+      var h=Array.prototype.map.call(new Uint8Array(r[0]),function(x){return ('0'+x.toString(16)).slice(-2);}).join('');
+      var d=reg.filter(function(x){return (x.sha256||'').toLowerCase()===h;})[0];
+      if(d) show(el,true,'El archivo coincide con el documento '+d.codigo+', emitido el '+d.fecha+'.');
+      else show(el,false,'La huella de este archivo no está en el registro. Puede haber sido modificado o no ser oficial.');
+    }).catch(function(){show(el,false,'No se pudo comprobar el archivo.');});
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "emisor": "Expertos Chile SpA",
+  "responsable": "Gustavo Godoy, Gerente",
+  "documentos": [
+    {
+      "codigo": "EC-JIB-20261016-01",
+      "titulo": "Desafío INACAP: valorización de descarte de jibia bajo economía circular (Biobío)",
+      "fecha": "2026-10-16",
+      "version": 1,
+      "emisor": "Expertos Chile SpA",
+      "sha256": "PEGAR_AQUI_LA_HUELLA_DEL_PDF_FINAL"
+    }
+  ]
+}
